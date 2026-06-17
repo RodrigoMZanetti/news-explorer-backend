@@ -3,14 +3,15 @@ const {
   createArticle,
   deleteArticle,
 } = require('../controllers/articles');
+const auth = require('../middlewares/auth');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/', getArticles);
+router.get('/', auth, getArticles);
 
-router.post('/', createArticle);
+router.post('/', auth, createArticle);
 
-router.delete('/:articleId', deleteArticle);
+router.delete('/:articleId', auth, deleteArticle);
 
 module.exports = router;
