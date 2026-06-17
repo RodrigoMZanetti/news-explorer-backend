@@ -53,4 +53,4 @@ const signin = async (req, res, next) => {
   }
 };
 
-module.exports = { getCurrentUser, signup };
+module.exports = { getCurrentUser, signup, signin };

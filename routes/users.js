@@ -1,4 +1,4 @@
-const getCurrentUser = require('../controllers/users');
+const { getCurrentUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 
 const express = require('express');
