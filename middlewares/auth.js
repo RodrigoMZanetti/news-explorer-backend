@@ -11,7 +11,11 @@ function auth(req, res, next) {
   const token = getToken.replace('Bearer ', '');
 
   try {
-    const verification = jwt.verify(token, 'chave-secreta-temporaria');
+    const { NODE_ENV, JWT_SECRET } = process.env;
+    const verification = jwt.verify(
+      token,
+      NODE_ENV === 'production' ? JWT_SECRET : 'chave-secreta-temporaria',
+    );
     req.user = verification;
     next();
   } catch (err) {

@@ -30,7 +30,7 @@ const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email }).select('+password');
-
+    const { NODE_ENV, JWT_SECRET } = process.env;
     if (!user) {
       res.status(404).send({ message: 'Email ou senha incorretos' });
       return;
@@ -43,9 +43,13 @@ const signin = async (req, res, next) => {
       return;
     }
 
-    const token = jwt.sign({ _id: user._id }, 'chave-secreta-temporaria', {
-      expiresIn: '7d',
-    });
+    const token = jwt.sign(
+      { _id: user._id },
+      NODE_ENV === 'production' ? JWT_SECRET : 'chave-secreta-temporaria',
+      {
+        expiresIn: '7d',
+      },
+    );
     res.send({ token });
   } catch (err) {
     next(err);
