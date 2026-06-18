@@ -4,13 +4,14 @@ const {
   deleteArticle,
 } = require('../controllers/articles');
 const auth = require('../middlewares/auth');
+const { validateCreateArticle } = require('../middlewares/validation');
 
 const express = require('express');
 const router = express.Router();
 
 router.get('/', auth, getArticles);
 
-router.post('/', auth, createArticle);
+router.post('/', auth, validateCreateArticle, createArticle);
 
 router.delete('/:articleId', auth, deleteArticle);
 

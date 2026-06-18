@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const { PORT = 3000 } = process.env;
 const winston = require('winston');
 const expressWinston = require('express-winston');
+const { errors } = require('celebrate');
 
 app.use(express.json());
 
@@ -21,6 +22,7 @@ app.use(
 app.use('/users', users);
 app.use('/articles', articles);
 app.use('/', auth);
+app.use(errors());
 
 app.use(
   expressWinston.errorLogger({
