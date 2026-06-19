@@ -21,8 +21,12 @@ const signup = async (req, res, next) => {
     const user = await User.create({ email, password: hashedPassword, name });
     res.status(201).send({ email: user.email, name: user.name });
   } catch (err) {
-    next(err);
-    return;
+    if (err.code === 11000) {
+      res.status(409).send({ message: 'Email já cadastrado' });
+    } else {
+      next(err);
+      return;
+    }
   }
 };
 
