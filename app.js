@@ -5,7 +5,8 @@ const articles = require('./routes/articles');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const mongoose = require('mongoose');
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, MONGO_URI = 'mongodb://localhost:27017/newsexplorer' } =
+  process.env;
 const winston = require('winston');
 const expressWinston = require('express-winston');
 const { errors } = require('celebrate');
@@ -41,7 +42,7 @@ function errorMiddleware(err, req, res, next) {
 app.use(errorMiddleware);
 
 mongoose
-  .connect('mongodb://localhost:27017/newsexplorer')
+  .connect(MONGO_URI)
   .then(() => {
     console.log('Conection is okay');
   })
