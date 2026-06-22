@@ -29,7 +29,7 @@ const articleSchema = new Schema({
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'Usuario',
+    ref: 'User',
     required: true,
   },
 });
