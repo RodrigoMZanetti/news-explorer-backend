@@ -51,7 +51,11 @@ const deleteArticle = async (req, res, next) => {
     const deletedArticle = await Article.findByIdAndDelete(articleId);
     res.send(deletedArticle);
   } catch (err) {
-    next(err);
+    if (err.name === 'CastError') {
+      res.status(400).send({ message: 'Invalid ID' });
+    } else {
+      next(err);
+    }
   }
 };
 
