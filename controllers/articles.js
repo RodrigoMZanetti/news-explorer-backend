@@ -38,9 +38,6 @@ const deleteArticle = async (req, res, next) => {
   try {
     const article = await Article.findById(articleId);
 
-    console.log('article:', article);
-    console.log('req.user:', req.user);
-
     if (!article) {
       return res.status(404).send({ message: 'Artigo não encontrado' });
     }
