@@ -9,6 +9,7 @@ const { PORT = 3000 } = process.env;
 const winston = require('winston');
 const expressWinston = require('express-winston');
 const { errors } = require('celebrate');
+const noRouteMiddleware = require('./middlewares/noRoute');
 
 app.use(express.json());
 
@@ -22,6 +23,8 @@ app.use(
 app.use('/users', users);
 app.use('/articles', articles);
 app.use('/', auth);
+
+app.use(noRouteMiddleware);
 app.use(errors());
 
 app.use(
@@ -37,7 +40,14 @@ function errorMiddleware(err, req, res, next) {
 
 app.use(errorMiddleware);
 
-mongoose.connect('mongodb://localhost:27017/newsexplorer');
+mongoose
+  .connect('mongodb://localhost:27017/newsexplorer')
+  .then(() => {
+    console.log('Conection is okay');
+  })
+  .catch((err) => {
+    console.log(`Error! ${err}`);
+  });
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
