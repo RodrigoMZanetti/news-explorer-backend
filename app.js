@@ -11,8 +11,10 @@ const winston = require('winston');
 const expressWinston = require('express-winston');
 const { errors } = require('celebrate');
 const noRouteMiddleware = require('./middlewares/noRoute');
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 app.use(
   expressWinston.logger({
