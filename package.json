@@ -1,0 +1,36 @@
+{
+  "name": "news-explorer-backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/RodrigoMZanetti/news-explorer-backend#readme",
+  "bugs": {
+    "url": "https://github.com/RodrigoMZanetti/news-explorer-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RodrigoMZanetti/news-explorer-backend.git"
+  },
+  "license": "ISC",
+  "author": "Rodrigo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0",
+    "validator": "^13.15.35",
+    "winston": "^3.19.0"
+  }
+}

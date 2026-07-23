@@ -25,7 +25,7 @@ https://newsexplorerapizanetti.mooo.com
 
 Create a `.env` file in the project root:
 
-ORT=3000
+PORT=3000
 NODE_ENV=production
 JWT_SECRET=your_secret_here
 MONGO_URI=your_mongodb_connection_string
